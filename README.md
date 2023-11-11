@@ -1,4 +1,4 @@
-#README do Movie App
+README do Movie App
 Visão Geral
 Bem-vindo ao Movie App! Este aplicativo permite aos usuários adicionar e gerenciar informações sobre filmes, incluindo nome, descrição e avaliação. Ele é construído usando Vite como ferramenta de construção, styled-components para estilização, react-icons para ícones e react-router-dom para navegação.
 
