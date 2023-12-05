@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { api } from '../services/api'
 export const AuthContext = createContext({})
 
@@ -9,7 +9,12 @@ function AuthProvider({ children }) {
     try {
       const response = await api.post('/sessions', { email, password })
       const { user, token } = response.data
-      api.defaults.headers.authorization = `Bearer${token}`
+
+      localStorage.setItem('@rocketmovies:user', JSON.stringify(user))
+      localStorage.setItem('@rocketmovies:token', token)
+
+      api.defaults.headers.common['authorization'] = `Bearer ${token}`
+
       setData({ user, token })
     } catch (error) {
       if (error.response) {
@@ -20,8 +25,48 @@ function AuthProvider({ children }) {
     }
   }
 
+  function signOut() {
+    localStorage.removeItem('@rocketmovies:token')
+    localStorage.removeItem('@rocketmovies:user')
+    setData({})
+  }
+
+  async function updateProfile({ user }) {
+    try {
+      await api.put('/users', user)
+      localStorage.setItem('@rocketmovies:user', JSON.stringify(user))
+      setData({ user, token: data.token })
+      alert('perfil atualizado!')
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message)
+      } else {
+        alert('Não foi possivel atualizar o perfil. ')
+      }
+    }
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('@rocketmovies:token')
+    const user = localStorage.getItem('@rocketmovies:user')
+    if (token && user) {
+      api.defaults.headers.common['authorization'] = `Bearer ${token}`
+      setData({
+        token,
+        user: JSON.parse(user)
+      })
+    }
+  }, [])
+
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        updateProfile,
+        user: data.user
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
