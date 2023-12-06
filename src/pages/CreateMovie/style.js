@@ -15,8 +15,8 @@ export const Container = styled.div`
   .tags {
     display: flex;
     flex-wrap: wrap;
-    height: 9rem;
-    padding: 1.6rem;
+
+    padding: 2rem;
     border-radius: 0.8rem;
     overflow-y: auto;
 
