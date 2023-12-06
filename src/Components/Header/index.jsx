@@ -4,9 +4,14 @@ import { FiSearch } from 'react-icons/fi'
 import { ButtonText } from '../../Components/ButtonText'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth'
+import { api } from '../../services/api'
+import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
 export function Header() {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
+  const avatarUrl = user.avatar
+    ? `${api.defaults.baseURL}/files/${user.avatar}`
+    : avatarPlaceholder
   return (
     <Container>
       <h1>RocketMovies</h1>
@@ -14,14 +19,11 @@ export function Header() {
 
       <Profile>
         <div>
-          <strong>Jordan Guimarães</strong>
+          <strong>{user.name}</strong>
           <ButtonText title="sair" onClick={signOut} />
         </div>
         <Link className="link" to="/profile">
-          <img
-            src="https://github.com/jordanguimaraes17.png"
-            alt="Foto do usário"
-          />
+          <img src={avatarUrl} alt="Foto do usário" />
         </Link>
       </Profile>
     </Container>
