@@ -16,26 +16,27 @@ export function CreateMovie() {
   const [note, setNote] = useState('')
   const [description, setDescription] = useState('')
 
-  const [tags, setTgas] = useState([])
+  const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState('')
 
   function handleAddTag() {
-    setTgas(prevState => [...prevState, newTag])
+    setTags(prevState => [...prevState, newTag])
     setNewTag('')
   }
+
   function handleRemoveTag(deleted) {
-    setTgas(prevState => prevState.filter(tag => tag !== deleted))
+    setTags(prevState => prevState.filter(tag => tag !== deleted))
   }
   async function handleNewMovie() {
     try {
-      // Validação de entrada
-      if (!title || !description || !note || !tags) {
-        alert('Por favor, preencha todos os campos.')
-        return
-      }
+      // Validação dos campos
+      if (!title) throw new Error('Digite um título')
+      if (!note) throw new Error('Digite uma nota')
+      if (!tags || tags.length === 0)
+        throw new Error('Deixou uma tag sem adicionar.')
 
       // Chamada assíncrona da API
-      await api.post(`/movie`, {
+      await api.post('/movie', {
         title,
         description,
         rating: note,
@@ -48,9 +49,8 @@ export function CreateMovie() {
       // Redirecionamento
       navigate(-1)
     } catch (error) {
-      // Lidar com erros
-      console.error('Erro ao adicionar filme:', error)
-      alert('Erro ao adicionar filme. Tente novamente mais tarde.')
+      // Tratamento de erro
+      alert(`Erro ao adicionar filme: ${error.message}`)
     }
   }
 
