@@ -36,13 +36,3 @@ export const Content = styled.div`
   max-width: 100%;
   gap: 2.4rem;
 `
-export const Synopsis = styled.div`
-  > p {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1.6rem;
-    white-space: nowrap;
-    margin-bottom: 2rem;
-    color: ${({ theme }) => theme.COLORS.GRAY_100};
-  }
-`

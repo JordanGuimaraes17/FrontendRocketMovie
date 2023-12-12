@@ -1,22 +1,19 @@
-import { Container } from "./style";
-import {AiFillStar,AiOutlineStar} from "react-icons/ai"
+import { Container } from './style'
+import { Tag } from '../Tag'
 
-export function TagTitle({title, children}){
-  return(
-    <Container >
-      <h2>{title}</h2>
-      <div>
-          {[
-        <AiFillStar key="1" />,
-        <AiFillStar key="2" />,
-        <AiFillStar key="3" />,
-        <AiFillStar key="4" />,
-        <AiOutlineStar key="5"/>
-      ]}
-          </div>
-          {children}
-         
-      
+export function TagTitle({ data, ...rest }) {
+  return (
+    <Container {...rest}>
+      <h1>{data.title}</h1>
+      <h2>{data.description}</h2>
+
+      {data.tags && (
+        <footer>
+          {data.tags.map(tag => (
+            <Tag key={tag.id} title={tag.name} />
+          ))}
+        </footer>
+      )}
     </Container>
   )
 }
