@@ -30,6 +30,10 @@ export const Container = styled.button`
     font-weight: 400;
     font-size: 1.6rem;
     color: ${({ theme }) => theme.COLORS.GRAY_100};
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   > footer {

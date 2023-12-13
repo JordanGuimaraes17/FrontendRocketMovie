@@ -21,23 +21,27 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-
-  > section {
+  > header {
     display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    margin-top: 2.4rem;
-    margin-bottom: 2.4rem;
-    svg {
-      color: ${({ theme }) => theme.COLORS.PINK};
-    }
-
-    h2 {
-      margin-right: 1.9rem;
-    }
+    justify-content: space-around;
   }
 
   > footer {
+    > section {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2.4rem;
+      h1 {
+        font-weight: 500;
+        font-size: 3.6rem;
+      }
+      svg {
+        font-size: 2rem;
+        margin-left: 1rem;
+        color: ${({ theme }) => theme.COLORS.PINK};
+      }
+    }
     > div {
       svg {
         color: ${({ theme }) => theme.COLORS.PINK};
@@ -53,8 +57,10 @@ export const Content = styled.div`
     }
 
     p {
+      font-weight: 400;
       padding: 4rem 0 4rem;
       text-align: justify;
+      color: ${({ theme }) => theme.COLORS.GRAY_100};
     }
   }
 `
