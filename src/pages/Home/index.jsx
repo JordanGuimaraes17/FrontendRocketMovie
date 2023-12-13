@@ -15,8 +15,8 @@ export function Home() {
 
   const navigate = useNavigate()
 
-  function handleDetails(id) {
-    navigate(`/details/${id}`)
+  function handlePreview(id) {
+    navigate(`/preview/${id}`)
   }
   function handleSearch(value) {
     setSearch(value)
@@ -34,7 +34,6 @@ export function Home() {
   useEffect(() => {
     async function fetchMovies() {
       const response = await api.get(`/movie?title=${search}`)
-
       setMovies(response.data)
     }
 
@@ -54,7 +53,11 @@ export function Home() {
       <main>
         <Content>
           {movies.map(movie => (
-            <TagTitle key={String(movie.id)} data={movie} />
+            <TagTitle
+              key={String(movie.id)}
+              data={movie}
+              onClick={() => handlePreview(movie.id)}
+            />
           ))}
         </Content>
       </main>
