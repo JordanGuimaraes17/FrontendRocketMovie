@@ -7,7 +7,7 @@ import { Input } from '../../Components/Input'
 import { useAuth } from '../../hooks/auth'
 import { BsPerson } from 'react-icons/bs'
 import { api } from '../../services/api'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 export function Profile() {
@@ -30,13 +30,15 @@ export function Profile() {
   }
 
   async function handleUpdate() {
-    const user = {
+    const updated = {
       name,
       email,
       old_password: passwordOld,
       password: passwordNew
     }
-    await updateProfile({ user, avatarFile })
+    const userUpdated = Object.assign(user, updated)
+    await updateProfile({ user: userUpdated, avatarFile })
+    navigate(-1)
   }
 
   function handleChangeAvatar(event) {
