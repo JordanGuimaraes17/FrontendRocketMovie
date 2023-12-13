@@ -12,6 +12,7 @@ export function Home() {
   const [search, setSearch] = useState('')
   const [movies, setMovies] = useState([])
   const [tags, setTags] = useState([])
+
   const navigate = useNavigate()
 
   function handleDetails(id) {
@@ -50,11 +51,7 @@ export function Home() {
       <main>
         <Content>
           {movies.map(movie => (
-            <TagTitle
-              key={String(movie.id)}
-              data={movie}
-              onClick={() => handleDetails(movie.id)}
-            />
+            <TagTitle key={String(movie.id)} data={movie} />
           ))}
         </Content>
       </main>

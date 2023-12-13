@@ -11,15 +11,20 @@ export const Container = styled.button`
   margin-bottom: 1.6rem;
 
   > h1 {
-    flex: 1; // occupy all the possible space
+    display: flex;
+    flex-direction: column;
     text-align: left;
     font-weight: 700;
     font-size: 2.4rem;
     color: ${({ theme }) => theme.COLORS.WHITE};
+    svg {
+      font-size: 1.6rem;
+      color: ${({ theme }) => theme.COLORS.PINK};
+    }
   }
 
   > h2 {
-    flex: 1; // occupy all the possible space
+    word-wrap: break-word;
     margin-top: 1rem;
     text-align: justify;
     font-weight: 400;
