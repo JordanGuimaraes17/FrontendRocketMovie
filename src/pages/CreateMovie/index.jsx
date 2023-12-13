@@ -31,15 +31,22 @@ export function CreateMovie() {
     try {
       // Validação dos campos
       if (!title) throw new Error('Digite um título')
-      if (!note) throw new Error('Digite uma nota')
-      if (!tags || tags.length === 0)
+
+      // Validar e converter a nota para um número no intervalo de 0 a 5
+      const numberRating = parseFloat(note) // note aqui é rating
+      if (isNaN(numberRating) || numberRating < 0 || numberRating > 5) {
+        throw new Error('Digite uma nota válida no intervalo de 0 a 5')
+      }
+
+      if (!tags || tags.length === 0) {
         throw new Error('Deixou uma tag sem adicionar.')
+      }
 
       // Chamada assíncrona da API
       await api.post('/movie', {
         title,
         description,
-        rating: note,
+        rating: numberRating, // ajustado aqui era note , mais foi para numberRating
         movie_tags: tags // Ajuste para corresponder aos parâmetros esperados pela função create
       })
 
