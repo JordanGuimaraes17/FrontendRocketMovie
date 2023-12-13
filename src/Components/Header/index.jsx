@@ -7,7 +7,7 @@ import { useAuth } from '../../hooks/auth'
 import { api } from '../../services/api'
 import avatarPlaceholder from '../../assets/avatar_placeholder.svg'
 
-export function Header() {
+export function Header({ onSearch }) {
   const { signOut, user } = useAuth()
   const avatarUrl = user.avatar
     ? `${api.defaults.baseURL}/files/${user.avatar}`
@@ -15,7 +15,11 @@ export function Header() {
   return (
     <Container>
       <h1>RocketMovies</h1>
-      <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+      <Input
+        placeholder="Pesquisar pelo título"
+        icon={FiSearch}
+        onChange={e => onSearch(e.target.value)}
+      />
 
       <Profile>
         <div>

@@ -18,6 +18,9 @@ export function Home() {
   function handleDetails(id) {
     navigate(`/details/${id}`)
   }
+  function handleSearch(value) {
+    setSearch(value)
+  }
 
   useEffect(() => {
     async function handleTags() {
@@ -40,7 +43,7 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
+      <Header onSearch={handleSearch} />
 
       <Section title="Meus filmes">
         <Link to="/create/:id">
