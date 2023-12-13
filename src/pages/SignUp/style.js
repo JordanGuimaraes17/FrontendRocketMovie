@@ -26,7 +26,7 @@ export const Form = styled.form`
   > h2 {
     margin-bottom: 2.8rem;
   }
-  .link {
+  > button {
     margin-top: 4rem;
   }
 `

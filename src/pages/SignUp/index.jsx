@@ -6,13 +6,16 @@ import { Button } from '../../Components/Button'
 import { BsPerson } from 'react-icons/bs'
 import { FiLock, FiMail, FiArrowLeft } from 'react-icons/fi'
 import { ButtonText } from '../../Components/ButtonText'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export function SignUP() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  function backNavigate() {
+    navigate(-1)
+  }
   function handleSignUp() {
     if (!name || !email || !password) {
       return alert('prencha todos campos!')
@@ -60,9 +63,11 @@ export function SignUP() {
         />
         <Button title="Cadastrar" onClick={handleSignUp} />
 
-        <Link className="link" to="/">
-          <ButtonText icon={FiArrowLeft} title="Voltar para o login" />
-        </Link>
+        <ButtonText
+          icon={FiArrowLeft}
+          title="Voltar para o login"
+          onClick={backNavigate}
+        />
       </Form>
     </Container>
   )

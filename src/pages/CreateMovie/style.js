@@ -45,9 +45,11 @@ export const Form = styled.form`
   > footer {
     display: flex;
     gap: 4rem;
-    button:nth-child(1) {
-      background: ${({ theme }) => theme.COLORS.BACKGROUND_1000};
-      color: ${({ theme }) => theme.COLORS.PINK};
+    button {
+      margin: 0 auto;
+      width: 50%;
+      color: ${({ theme }) => theme.COLORS.BACKGROUND_1000};
+      background: ${({ theme }) => theme.COLORS.PINK};
     }
   }
 `

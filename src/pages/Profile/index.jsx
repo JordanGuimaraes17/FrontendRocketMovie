@@ -7,10 +7,11 @@ import { Input } from '../../Components/Input'
 import { useAuth } from '../../hooks/auth'
 import { BsPerson } from 'react-icons/bs'
 import { api } from '../../services/api'
-import { Link } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 export function Profile() {
+  const navigate = useNavigate()
   const { user, updateProfile } = useAuth()
 
   const [name, setName] = useState(user.name)
@@ -23,6 +24,10 @@ export function Profile() {
     : avatarPlaceholder
   const [avatar, setAvatar] = useState(avatarUrl)
   const [avatarFile, setAvatarFile] = useState(null)
+
+  function backNavigate() {
+    navigate(-1)
+  }
 
   async function handleUpdate() {
     const user = {
@@ -45,9 +50,7 @@ export function Profile() {
   return (
     <Container>
       <header>
-        <Link to="/">
-          <ButtonText icon={FiArrowLeft} title="Voltar" />
-        </Link>
+        <ButtonText icon={FiArrowLeft} title="Voltar" onClick={backNavigate} />
       </header>
       <Form>
         <Avatar>

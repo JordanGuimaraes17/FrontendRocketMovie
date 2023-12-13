@@ -19,9 +19,19 @@ export function CreateMovie() {
   const [tags, setTags] = useState([])
   const [newTag, setNewTag] = useState('')
 
+  function backNavigate() {
+    navigate(-1)
+  }
+
   function handleAddTag() {
-    setTags(prevState => [...prevState, newTag])
-    setNewTag('')
+    // Verificar se a nova tag não está vazia antes de adicioná-la
+    if (newTag.trim() !== '') {
+      setTags(prevState => [...prevState, newTag])
+      setNewTag('')
+    } else {
+      // Exibir uma mensagem de erro ou tomar outra ação, se necessário
+      alert(' tag não pode estar vazia.')
+    }
   }
 
   function handleRemoveTag(deleted) {
@@ -67,9 +77,12 @@ export function CreateMovie() {
       <main>
         <Form>
           <header>
-            <Link to="/">
-              <ButtonText icon={FiArrowLeft} title="voltar" />
-            </Link>
+            <ButtonText
+              icon={FiArrowLeft}
+              title="voltar"
+              onClick={backNavigate}
+            />
+
             <h2>Novo filme</h2>
           </header>
           <div>
@@ -105,7 +118,6 @@ export function CreateMovie() {
             />
           </div>
           <footer>
-            <Button title="Excluir filme" />
             <Button title="Salvar alterações" onClick={handleNewMovie} />
           </footer>
         </Form>
