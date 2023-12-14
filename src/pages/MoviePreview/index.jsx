@@ -87,7 +87,7 @@ export function MoviePreview() {
                 <img src={avatarUrl} alt="Foto do usário" />
                 &nbsp; por {user.name} &nbsp;
                 <AiOutlineClockCircle />
-                &nbsp;05/11/2023 às 8:00
+                &nbsp; {data.created_at}
               </div>
               {data.tags && (
                 <span>
