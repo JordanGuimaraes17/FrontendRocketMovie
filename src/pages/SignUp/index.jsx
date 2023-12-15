@@ -20,6 +20,23 @@ export function SignUP() {
     if (!name || !email || !password) {
       return alert('prencha todos campos!')
     }
+    // Verificar se o nome possui um formato específico (apenas letras e espaços)
+    const nameRegex = /^[a-zA-Z\s]+$/
+    if (!nameRegex.test(name)) {
+      return alert('O nome deve conter apenas letras e espaços!')
+    }
+    // Verificar se o e-mail possui um formato válido
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return alert('Digite um e-mail válido, sem caracteres especiais!')
+    }
+
+    // Verificar se a senha atende ao comprimento mínimo (exemplo: 6 caracteres)
+    const minLength = 6
+    if (password.length < minLength) {
+      return alert(`A senha deve ter pelo menos ${minLength} caracteres!`)
+    }
+
     api
       .post('/users', { name, email, password })
       .then(() => {
