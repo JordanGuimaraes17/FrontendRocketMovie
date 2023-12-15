@@ -28,7 +28,7 @@ export function SignUP() {
     // Verificar se o e-mail possui um formato válido
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      return alert('Digite um e-mail válido, sem caracteres especiais!')
+      return alert('Digite um e-mail válido!')
     }
 
     // Verificar se a senha atende ao comprimento mínimo (exemplo: 6 caracteres)
