@@ -43,7 +43,9 @@ export function CreateMovie() {
       if (!title) throw new Error('Digite um título')
 
       // Validar e converter a nota para um número no intervalo de 0 a 5
-      const numberRating = parseFloat(note) // note aqui é rating
+      const noteWithoutCommaOrDot = note.replace(/[.,]/g, '') // Remove vírgulas e pontos
+      const numberRating = parseFloat(noteWithoutCommaOrDot)
+
       if (isNaN(numberRating) || numberRating < 0 || numberRating > 5) {
         throw new Error('Digite uma nota válida no intervalo de 0 a 5')
       }
